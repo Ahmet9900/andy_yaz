@@ -1,7 +1,7 @@
 @isTest
 private class DistributePaymentTest {
 
-    // Utility method to create test Contacts under an Account
+   
     private static List<Contact> createTestContacts(Id accountId) {
         List<Contact> contacts = new List<Contact>{
             new Contact(FirstName = 'Alice', LastName = 'Zimmerman', Birthdate = Date.newInstance(1980, 1, 1), AccountId = accountId),
