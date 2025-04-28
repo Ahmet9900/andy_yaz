@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="Bonus Distributor">
+        <div class="slds-var-m-around_medium">
+
+           
+            <lightning-combobox
+                name="account"
+                label="Select Account"
+                value={accountId}
+                options={accountOptions}
+                onchange={handleAccountChange}>
+            </lightning-combobox>
+
+           
+            <lightning-input
+                type="number"
+                label="Bonus Amount"
+                value={bonusAmount}
+                onchange={handleAmountChange}>
+            </lightning-input>
+
+          
+            <lightning-combobox
+                name="distributionMethod"
+                label="Distribution Method"
+                value={distributionMethod}
+                options={distributionOptions}
+                onchange={handleMethodChange}>
+            </lightning-combobox>
+
+          
+            <div class="slds-var-m-around_medium">
+                <lightning-button
+                variant="brand"
+                label="Distribute Bonus"
+                onclick={handleDistribute}
+                class="slds-m-top_medium">
+                </lightning-button>
+            </div>
+
+           
+            <template if:true={showTable}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={contacts}
+                    columns={columns}
+                    class="slds-var-m-top_medium">
+                </lightning-datatable>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
