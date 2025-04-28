@@ -7,11 +7,11 @@ global with sharing class BonusDistributionAPI {
         RestResponse res = RestContext.response;
 
         try {
-            // Parse the request body JSON
+           
             String requestBody = req.requestBody.toString();
             Map<String, Object> body = (Map<String, Object>) JSON.deserializeUntyped(requestBody);
 
-            // Validate inputs
+            
             if (!body.containsKey('accountId') || !body.containsKey('paymentAmount') || !body.containsKey('distributionType')) {
                 res.statusCode = 400;
                 res.responseBody = Blob.valueOf(JSON.serialize(new ResponseWrapper(false, 'Missing required parameters: accountId, paymentAmount, distributionType', null)));
@@ -25,7 +25,7 @@ global with sharing class BonusDistributionAPI {
             // Call distribution logic
             List<Contact> updatedContacts = DistributePayment.distribute(paymentAmount, accountId, distributionType);
 
-            // Return success response
+            
             res.statusCode = 200;
             res.responseBody = Blob.valueOf(JSON.serialize(new ResponseWrapper(true, 'Bonus distributed successfully.', updatedContacts)));
         } catch (DistributePayment.CustomException e) {
@@ -37,7 +37,7 @@ global with sharing class BonusDistributionAPI {
         }
     }
 
-    // Wrapper class for consistent API responses
+    
     global class ResponseWrapper {
         public Boolean success { get; set; }
         public String message { get; set; }
